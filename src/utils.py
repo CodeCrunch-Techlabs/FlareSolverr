@@ -18,6 +18,13 @@ CHROME_MAJOR_VERSION = None
 USER_AGENT = None
 XVFB_DISPLAY = None
 PATCHED_DRIVER_PATH = None
+EXPECTED_API_KEY = None
+
+def get_expected_api_key() -> str:
+    EXPECTED_API_KEY = os.environ.get("FLARESOLVERR_API_KEY", "")
+    if not EXPECTED_API_KEY:
+        raise ValueError("FLARESOLVERR_API_KEY is not set")
+    return EXPECTED_API_KEY
 
 
 def get_config_log_html() -> bool:

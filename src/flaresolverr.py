@@ -9,6 +9,7 @@ from bottle import run, response, Bottle, request, ServerAdapter
 from bottle_plugins.error_plugin import error_plugin
 from bottle_plugins.logger_plugin import logger_plugin
 from bottle_plugins import prometheus_plugin
+from bottle_plugins.auth_plugin import api_key_auth_plugin
 from dtos import V1RequestBase
 import flaresolverr_service
 import utils
@@ -110,6 +111,7 @@ if __name__ == "__main__":
     # start bootle plugins
     # plugin order is important
     app.install(logger_plugin)
+    app.install(api_key_auth_plugin)
     app.install(error_plugin)
     prometheus_plugin.setup()
     app.install(prometheus_plugin.prometheus_plugin)
